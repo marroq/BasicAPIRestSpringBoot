@@ -1,6 +1,7 @@
 package marroq.BasicAPIRestSpringBoot.controller;
 
 import marroq.BasicAPIRestSpringBoot.model.WalletModel;
+import marroq.BasicAPIRestSpringBoot.service.WalletService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,33 +9,39 @@ import java.util.List;
 @RestController
 public class WalletController {
 
+    private final WalletService walletService;
+
+    public WalletController(WalletService walletService) {
+        this.walletService = walletService;
+    }
+
     @GetMapping("/wallet")
-    public List<WalletModel> GetAllWallets() {
-        throw new UnsupportedOperationException("Method to implement");
+    public List<WalletModel> getWallets() {
+        return this.walletService.getWallets();
     }
 
     @GetMapping("/wallet/{id}")
-    public WalletModel GetWallet() {
+    public WalletModel getWallet() {
         throw new UnsupportedOperationException("Method to implement");
     }
 
     @PostMapping("/wallet")
-    public int NewWallet(@RequestBody WalletModel wallet) {
+    public int newWallet(@RequestBody WalletModel wallet) {
         throw new UnsupportedOperationException("Method to implement");
     }
 
     @PutMapping("/wallet")
-    public int UpdateWallet(@RequestBody WalletModel wallet) {
+    public int updateWallet(@RequestBody WalletModel wallet) {
         throw new UnsupportedOperationException("Method to implement");
     }
 
     @PatchMapping("/wallet/{id}")
-    public boolean UpdatePartialWallet(@RequestBody WalletModel wallet) {
+    public boolean updatePartialWallet(@RequestBody WalletModel wallet) {
         throw new UnsupportedOperationException("Method to implement");
     }
 
     @DeleteMapping("/wallet/{id}")
-    public boolean DeleteWallet() {
+    public boolean deleteWallet() {
         throw new UnsupportedOperationException("Method to implement");
     }
 }
