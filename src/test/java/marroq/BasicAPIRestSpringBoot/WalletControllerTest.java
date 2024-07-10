@@ -36,7 +36,7 @@ public class WalletControllerTest {
         List<WalletModel> wallets = new ArrayList<>() {
             {
                 add(new WalletModel(1, 1000));
-                add(new WalletModel(2, 1400));
+                add(new WalletModel(2, 1900));
             }
         };
 
@@ -47,6 +47,21 @@ public class WalletControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[1].income", Matchers.is(1400)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].income", Matchers.is(1900)));
+    }
+
+   @Test
+    public void shouldCreateWallet() throws Exception {
+        WalletModel wallet = new WalletModel(100,500);
+
+        Mockito.when(walletService.newWallet(wallet))
+                        .thenReturn(wallet);
+
+        mvc.perform(MockMvcRequestBuilders.post("/wallet")
+                .content(TestUtils.toJsonString(wallet))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isCreated());
     }
 }

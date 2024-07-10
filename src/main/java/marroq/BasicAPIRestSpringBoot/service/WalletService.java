@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface WalletService {
     public List<WalletModel> getWallets();
+
+    public WalletModel newWallet(WalletModel wallet);
 }
