@@ -2,6 +2,7 @@ package marroq.BasicAPIRestSpringBoot.controller;
 
 import marroq.BasicAPIRestSpringBoot.model.WalletModel;
 import marroq.BasicAPIRestSpringBoot.service.WalletService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +27,9 @@ public class WalletController {
     }
 
     @PostMapping("/wallet")
-    public int newWallet(@RequestBody WalletModel wallet) {
-        throw new UnsupportedOperationException("Method to implement");
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public WalletModel newWallet(@RequestBody WalletModel wallet) {
+        return this.walletService.newWallet(wallet);
     }
 
     @PutMapping("/wallet")
